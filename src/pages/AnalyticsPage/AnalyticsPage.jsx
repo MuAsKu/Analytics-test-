@@ -1,10 +1,10 @@
-import Sidebar from "../../components/Sidebar/Sidebar";
-import Header from "../../components/Header/Header";
+import Sidebar from "../../components/forAnalyticsPage/Sidebar/Sidebar";
+import Header from "../../components/forAnalyticsPage/Header/Header";
 import "./AnalyticsPage.css";
-import Heatmap from "../../components/Heatmap/Heatmap";
-import AnalyticsCards from "../../components/AnalyticsCards/AnalyticsCards";
-import DonutStats from "../../components/DonutStats/DonutStats";
-import RetentionOverview from "../../components/RetentionOverview/RetentionOverview";
+import Heatmap from "../../components/forAnalyticsPage/Heatmap/Heatmap";
+import AnalyticsCards from "../../components/forAnalyticsPage/AnalyticsCards/AnalyticsCards";
+import DonutStats from "../../components/forAnalyticsPage/DonutStats/DonutStats";
+import RetentionOverview from "../../components/forAnalyticsPage/RetentionOverview/RetentionOverview";
 
 function AnalyticsPage() {
   return (
