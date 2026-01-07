@@ -1,0 +1,180 @@
+.analytics-wrapper {
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+  font-family: Inter, sans-serif;
+}
+
+.analytics-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  width: 100%;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.stat-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: #010101;
+}
+
+.stat-value {
+  font-size: 32px;
+  font-weight: 600;
+  margin: 6px 0;
+}
+
+.stat-subtitle {
+  font-size: 12px;
+  color: #b5b5b5;
+}
+
+.chart-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 200px;
+  font-size: 12px;
+  color: #9a9a9a;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.y-tick {
+  height: 1px;
+}
+
+.chart {
+  position: relative;
+  flex: 1;
+  height: 200px;
+  overflow: hidden;
+  border-left: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.h-grid {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #efefef;
+}
+
+.v-grid {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: #f3f3f3;
+}
+
+.bars-row {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 1px;
+  z-index: 1;
+}
+
+.bar-group {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.bar {
+  width: 6px;
+  border-radius: 3px;
+}
+
+.bar-light {
+  background: #e9e7ff;
+}
+
+.bar-dark {
+  background: #6c63ff;
+}
+
+.vertical-lines {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.vertical-line {
+  position: absolute;
+  width: 2px;
+  background: #ad46e5;
+  bottom: 0;
+  transform: translateX(-50%);
+  border-radius: 1px;
+}
+
+.x-axis {
+  display: flex;
+  margin-left: 32px;
+  margin-top: 8px;
+  font-size: 12px;
+  color: #9a9a9a;
+}
+
+.x-tick {
+  flex: 1;
+  text-align: center;
+}
+
+.tooltip {
+  position: absolute;
+  top: 16px;
+  left: 120px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 12px;
+  font-size: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eee;
+  z-index: 3;
+}
+
+.tooltip-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.tooltip-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.dot-light {
+  background: #e9e7ff;
+}
+
+.dot-dark {
+  background: #6c63ff;
+}

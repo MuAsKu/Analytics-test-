@@ -1,0 +1,160 @@
+.heatmap-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 20px;
+  font-family: Inter, sans-serif;
+  max-width: 100%;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.heatmap-header {
+  margin-bottom: 16px;
+}
+
+.heatmap-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.heatmap-subtitle {
+  font-size: 14px;
+  color: #9ca3af;
+  margin-top: 2px;
+}
+
+.heatmap-body {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+}
+
+.heatmap-y {
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  margin-bottom: 23px;
+  justify-content: space-between;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.y-label {
+  font-size: 10px; 
+  color: #9ca3af;
+  text-align: right;
+  height: 20px;
+  line-height: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.heatmap-grid {
+  display: grid;
+  grid-template-columns: repeat(31, 12px);
+  grid-template-rows: repeat(10, 20px); 
+  gap: 3px; 
+  width: fit-content;
+}
+
+.heatmap-cell {
+  width: 12px;
+  height: 20px;
+  background: #f3f4f6;
+}
+
+.level-0 { background: #f3f4f6; }
+.level-1 { background: #ede9fe; }
+.level-2 { background: #c4b5fd; }
+.level-3 { background: #8b5cf6; }
+
+.heatmap-x-container {
+  display: flex;
+  width: 100%;
+}
+
+.heatmap-x {
+  display: grid;
+  grid-template-columns: repeat(31, 12px);
+  gap: 3px; 
+  margin-top: 8px;
+  width: fit-content;
+  margin-left: -7px;
+}
+
+.x-label {
+  font-size: 10px;
+  color: #9ca3af;
+  text-align: center;
+  width: 12px;
+  height: 16px;
+  line-height: 16px;
+}
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  font-size: 10px;
+  color: #6b7280;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.heatmap-tooltip {
+  position: fixed;
+  width: 180px;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px 10px;
+  box-shadow:
+    0 10px 15px rgba(0, 0, 0, 0.08),
+    0 4px 6px rgba(0, 0, 0, 0.04);
+  font-size: 12px;
+  color: #111827;
+  pointer-events: none;
+  z-index: 1000;
+  border: 1px solid #e5e7eb;
+}
+
+.tooltip-time {
+  font-weight: 500;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  font-size: 11px;
+}
+
+.tooltip-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tooltip-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.heatmap-cell.active {
+  outline: 2px solid #ad46e5;
+  border-radius: 3px;
+  z-index: 2;
+  position: relative;
+}

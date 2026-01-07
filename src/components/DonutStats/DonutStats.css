@@ -1,0 +1,65 @@
+.donut-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.donut-card {
+  background: #fff;
+  border-radius: 24px;
+  border: 1px solid #e5e7eb;
+  padding: 24px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  text-align: center;
+  font-family: Inter, sans-serif;
+}
+
+.donut-chart {
+  margin-bottom: 12px;
+}
+
+.donut-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.donut-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.donut-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.donut-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #6f6f6f;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.donut-values {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.donut-values span {
+  color: #9a9a9a;
+}
+
+.donut-values strong {
+  font-weight: 600;
+}

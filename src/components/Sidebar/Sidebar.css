@@ -1,0 +1,148 @@
+.sidebar {
+  width: 260px;
+  height: 100%;
+  background: #ffffff;
+  border-right: 1px solid #f0f0f0;
+  padding: 20px 16px;
+  font-family: Inter, sans-serif;
+  overflow: auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.logo-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.logo-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111;
+}
+
+.logo-text span {
+  color: #6366f1;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.menu-item {
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: #4b5563;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.menu-item:hover {
+  background: #f5f7fb;
+}
+
+.menu-item.active {
+  background: #eef2ff;
+  color: #4f46e5;
+  font-weight: 500;
+}
+
+.menu-section {
+  margin: 16px 12px 6px;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+}
+
+.accordion {
+  justify-content: space-between;
+}
+
+.arrow {
+  margin-left: auto;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid #9ca3af;
+  border-bottom: 2px solid #9ca3af;
+  transform: rotate(-45deg);
+  transition: 0.2s;
+}
+
+.arrow.open {
+  transform: rotate(45deg);
+}
+
+.submenu {
+  position: relative;
+  margin-left: 22px;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.submenu-line {
+  position: absolute;
+  left: 6px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #e5e7eb;
+  border-radius: 2px;
+}
+
+.submenu-item {
+  font-size: 14px;
+  color: #6b7280;
+  padding: 6px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.submenu-item:hover {
+  background: #f5f7fb;
+  color: #4f46e5;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.arrow.right {
+  transform: rotate(-45deg);
+  margin-left: auto;
+}
+
+.active-sub {
+  background: #ede9fe;
+  color: #4f46e5;
+  font-weight: 500;
+}
+.menu-footer {
+  margin-top: 50px;
+  padding-top: 12px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.dots {
+  margin-left: auto;
+  color: #9ca3af;
+}
