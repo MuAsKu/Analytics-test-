@@ -49,46 +49,49 @@ export default function Heatmap() {
           ))}
         </div>
 
-        <div className="heatmap-grid">
-          {data.map((dayRow) =>
-            dayRow.map((cell) => {
-              const isActive =
-                activeCell?.day === cell.day && activeCell?.hour === cell.hour;
+        <div className="heatmap-container">
+          <div className="heatmap-grid">
+            {data.map((dayRow) =>
+              dayRow.map((cell) => {
+                const isActive =
+                  activeCell?.day === cell.day &&
+                  activeCell?.hour === cell.hour;
 
-              return (
-                <div
-                  key={`${cell.day}-${cell.hour}`}
-                  className={`heatmap-cell ${cell.level} ${
-                    isActive ? "active" : ""
-                  }`}
-                  onMouseEnter={(e) => {
-                    const rect = e.currentTarget.getBoundingClientRect();
-                    setActiveCell(cell);
-                    setTooltip({
-                      ...cell,
-                      top: rect.top + window.scrollY - 100,
-                      left: rect.left + window.scrollX + 240,
-                    });
-                  }}
-                  onMouseLeave={() => {
-                    setActiveCell(null);
-                    setTooltip(null);
-                  }}
-                />
-              );
-            })
-          )}
-        </div>
-      </div>
+                return (
+                  <div
+                    key={`${cell.day}-${cell.hour}`}
+                    className={`heatmap-cell ${cell.level} ${
+                      isActive ? "active" : ""
+                    }`}
+                    onMouseEnter={(e) => {
+                      const rect = e.currentTarget.getBoundingClientRect();
+                      setActiveCell(cell);
+                      setTooltip({
+                        ...cell,
+                        top: rect.top + window.scrollY - 100,
+                        left: rect.left + window.scrollX + 240,
+                      });
+                    }}
+                    onMouseLeave={() => {
+                      setActiveCell(null);
+                      setTooltip(null);
+                    }}
+                  />
+                );
+              })
+            )}
+          </div>
 
-      <div className="heatmap-x-container">
-        <div style={{ width: "40px" }} />
-        <div className="heatmap-x">
-          {DAYS.map((day) => (
-            <div key={day} className="x-label">
-              {day}
+          <div className="heatmap-x-container">
+            <div style={{ width: "40px", flexShrink: 0 }} />
+            <div className="heatmap-x">
+              {DAYS.map((day) => (
+                <div key={day} className="x-label">
+                  {day}
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
 
