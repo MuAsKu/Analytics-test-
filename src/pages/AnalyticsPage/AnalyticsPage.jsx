@@ -1,6 +1,6 @@
 import Sidebar from "../../components/forAnalyticsPage/Sidebar/Sidebar";
 import Header from "../../components/forAnalyticsPage/Header/Header";
-import "./AnalyticsPage.css";
+import styles from "./AnalyticsPage.module.css";
 import Heatmap from "../../components/forAnalyticsPage/Heatmap/Heatmap";
 import AnalyticsCards from "../../components/forAnalyticsPage/AnalyticsCards/AnalyticsCards";
 import DonutStats from "../../components/forAnalyticsPage/DonutStats/DonutStats";
@@ -8,16 +8,16 @@ import RetentionOverview from "../../components/forAnalyticsPage/RetentionOvervi
 
 function AnalyticsPage() {
   return (
-    <div className="app">
+    <div className={styles.app}>
       <Sidebar />
-      <div className="main-content">
+      <div className={styles.mainContent}>
         <Header />
-        <div className="dashboard-container">
-          <div className="left-column">
+        <div className={styles.dashboardContainer}>
+          <div className={styles.leftColumn}>
             <Heatmap />
             <DonutStats />
           </div>
-          <div className="right-column">
+          <div className={styles.rightColumn}>
             <AnalyticsCards />
             <RetentionOverview />
           </div>

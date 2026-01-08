@@ -1,5 +1,5 @@
 import { useMemo, useState, useCallback } from "react";
-import "./Heatmap.css";
+import styles from "./Heatmap.module.css";
 
 const HOURS = [
   "24:00",
@@ -16,6 +16,12 @@ const HOURS = [
 
 const DAYS = Array.from({ length: 31 }, (_, i) => i + 1);
 const LEVELS = ["level-0", "level-1", "level-2", "level-3"];
+
+const LEVEL_CLASS_MAP = {
+  "level-1": styles.level1,
+  "level-2": styles.level2,
+  "level-3": styles.level3,
+};
 
 export default function Heatmap() {
   const [tooltip, setTooltip] = useState(null);
@@ -50,23 +56,23 @@ export default function Heatmap() {
   }, []);
 
   return (
-    <div className="heatmap-card">
-      <div className="heatmap-header">
-        <div className="heatmap-title">Пиковое время использования карт</div>
-        <div className="heatmap-subtitle">1 марта 2025 - 31 марта 2025</div>
+    <div className={styles.heatmapCard}>
+      <div className={styles.heatmapHeader}>
+        <div className={styles.heatmapTitle}>Пиковое время использования карт</div>
+        <div className={styles.heatmapSubtitle}>1 марта 2025 - 31 марта 2025</div>
       </div>
 
-      <div className="heatmap-body">
-        <div className="heatmap-y">
+      <div className={styles.heatmapBody}>
+        <div className={styles.heatmapY}>
           {HOURS.map((hour) => (
-            <div key={hour} className="y-label">
+            <div key={hour} className={styles.yLabel}>
               {hour}
             </div>
           ))}
         </div>
 
-        <div className="heatmap-container">
-          <div className="heatmap-grid">
+        <div className={styles.heatmapContainer}>
+          <div className={styles.heatmapGrid}>
             {data.map((dayRow) =>
               dayRow.map((cell) => {
                 const isActive =
@@ -76,8 +82,8 @@ export default function Heatmap() {
                 return (
                   <div
                     key={`${cell.day}-${cell.hour}`}
-                    className={`heatmap-cell ${cell.level} ${
-                      isActive ? "active" : ""
+                    className={`${styles.heatmapCell} ${LEVEL_CLASS_MAP[cell.level] || ""} ${
+                      isActive ? styles.active : ""
                     }`}
                     onMouseMove={(e) => handleCellMouseMove(e, cell)}
                     onMouseLeave={handleCellMouseLeave}
@@ -87,10 +93,13 @@ export default function Heatmap() {
             )}
           </div>
 
-          <div className="heatmap-x-container">
-            <div className="heatmap-x">
+          <div className={styles.heatmapXContainer}>
+            <div className={styles.heatmapX}>
               {DAYS.map((day) => (
-                <div key={day} className="x-label">
+                <div
+                  key={day}
+                  className={`${styles.xLabel} ${day % 2 === 0 ? styles.even : ""}`}
+                >
                   {day}
                 </div>
               ))}
@@ -99,35 +108,35 @@ export default function Heatmap() {
         </div>
       </div>
 
-      <div className="heatmap-legend">
-        <div className="legend-item">
+      <div className={styles.heatmapLegend}>
+        <div className={styles.legendItem}>
           <span>1–50 раз</span>
-          <span className="legend-dot level-1" />
+          <span className={`${styles.legendDot} ${styles.level1}`} />
         </div>
-        <div className="legend-item">
+        <div className={styles.legendItem}>
           <span>51–100 раз</span>
-          <span className="legend-dot level-2" />
+          <span className={`${styles.legendDot} ${styles.level2}`} />
         </div>
-        <div className="legend-item">
+        <div className={styles.legendItem}>
           <span>100–150 раз</span>
-          <span className="legend-dot level-3" />
+          <span className={`${styles.legendDot} ${styles.level3}`} />
         </div>
       </div>
 
       {tooltip && (
         <div
-          className="heatmap-tooltip"
+          className={styles.heatmapTooltip}
           style={{
             top: tooltip.top,
             left: tooltip.left,
           }}
         >
-          <div className="tooltip-time">
+          <div className={styles.tooltipTime}>
             {tooltip.hour.replace(":00", "")}:00–{tooltip.hour}, {tooltip.day}{" "}
             марта 2025
           </div>
-          <div className="tooltip-row">
-            <span className={`tooltip-dot ${tooltip.level}`} />
+          <div className={styles.tooltipRow}>
+            <span className={`${styles.tooltipDot} ${LEVEL_CLASS_MAP[tooltip.level] || ""}`} />
             <span>{tooltip.value} раз</span>
           </div>
         </div>

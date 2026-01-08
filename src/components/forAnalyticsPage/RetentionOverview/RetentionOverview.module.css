@@ -1,11 +1,11 @@
-.retention-wrapper {
+.retentionWrapper {
   flex: 1;
   max-width: 100%;
   box-sizing: border-box;
   font-family: Inter, sans-serif;
 }
 
-.retention-card {
+.retentionCard {
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 24px;
@@ -15,40 +15,40 @@
   max-width: 100%;
 }
 
-.retention-header {
+.retentionHeader {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
   gap: 20px;
 }
 
-.retention-stat {
+.retentionStat {
   flex: 1;
 }
 
-.retention-stat-title {
+.retentionStatTitle {
   font-weight: 600;
   font-size: 14px;
   color: #010101;
 }
 
-.retention-stat-value {
+.retentionStatValue {
   font-size: 32px;
   font-weight: 600;
   margin: 6px 0;
 }
 
-.retention-stat-subtitle {
+.retentionStatSubtitle {
   font-size: 12px;
   color: #b5b5b5;
 }
 
-.retention-chart-wrapper {
+.retentionChartWrapper {
   display: flex;
   width: 100%;
 }
 
-.retention-chart {
+.retentionChart {
   position: relative;
   flex: 1;
   height: 200px;
@@ -57,8 +57,7 @@
   border-bottom: 1px solid #eee;
 }
 
-
-.retention-tooltip {
+.retentionTooltip {
   position: absolute;
   top: 16px;
   left: 120px;
@@ -70,7 +69,7 @@
   z-index: 3;
 }
 
-.retention-tooltip-title {
+.retentionTooltipTitle {
   font-weight: 600;
   margin-bottom: 12px;
   text-align: center;
@@ -78,32 +77,32 @@
   color: #111827;
 }
 
-.retention-tooltip-grid {
+.retentionTooltipGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px 16px;
 }
 
-.tooltip-row {
+.tooltipRow {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.tooltip-cell {
+.tooltipCell {
   width: 20px;
   height: 20px;
   border-radius: 4px;
 }
 
-.tooltip-number {
+.tooltipNumber {
   font-size: 12px;
   font-weight: 600;
   color: #111827;
   min-width: 20px;
 }
 
-.retention-legend {
+.retentionLegend {
   display: flex;
   align-items: center;
   gap: 16px;
@@ -114,30 +113,31 @@
   flex-wrap: wrap;
 }
 
-.retention-legend-item {
+.retentionLegendItem {
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
-.retention-legend-dot {
+.retentionLegendDot {
   width: 10px;
   height: 10px;
   border-radius: 2px;
 }
 
-.retention-legend-dot.level-1 {
+.level1 {
   background: #e9e7ff;
 }
 
-.retention-legend-dot.level-2 {
+.level2 {
   background: #c4b5fd;
 }
 
-.retention-legend-dot.level-3 {
+.level3 {
   background: #8b5cf6;
 }
 
-.retention-legend-dot.level-4 {
+.level4 {
   background: #6d28d9;
 }
+

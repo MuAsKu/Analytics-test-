@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect, useMemo } from "react";
 import {
   Chart,
   CategoryScale,
@@ -9,7 +9,7 @@ import {
   Legend,
   Title,
 } from "chart.js";
-import "./RetentionOverview.css";
+import styles from "./RetentionOverview.module.css";
 
 Chart.register(
   CategoryScale,
@@ -21,9 +21,25 @@ Chart.register(
   Title
 );
 
+const TOOLTIP_DATA = [
+  { color: "#EDE9FB", value: 86 },
+  { color: "#947DE8", value: 59 },
+  { color: "#CABEF3", value: 55 },
+  { color: "#6D4EDF", value: 42 },
+];
+
 export default function RetentionOverview() {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
+
+  const chartData = useMemo(() => {
+    const days = Array.from({ length: 31 }, (_, i) => i + 1);
+    const dataRetention = days.map(() => Math.floor(Math.random() * 15) + 15);
+    const dataChurn = days.map(
+      (_, i) => dataRetention[i] - Math.floor(Math.random() * 3)
+    );
+    return { days, dataRetention, dataChurn };
+  }, []);
 
   useEffect(() => {
     const ctx = chartRef.current;
@@ -35,19 +51,13 @@ export default function RetentionOverview() {
       chartInstance.current = null;
     }
 
-    const days = Array.from({ length: 31 }, (_, i) => i + 1);
-    const dataRetention = days.map(() => Math.floor(Math.random() * 15) + 15);
-    const dataChurn = days.map(
-      (_, i) => dataRetention[i] - Math.floor(Math.random() * 3)
-    );
-
     chartInstance.current = new Chart(ctx, {
       type: "bar",
       data: {
-        labels: days.map((d) => d.toString()),
+        labels: chartData.days.map((d) => d.toString()),
         datasets: [
           {
-            data: dataRetention,
+            data: chartData.dataRetention,
             backgroundColor: "#6D4EDF",
             borderColor: "#6D4EDF",
             borderRadius: {
@@ -59,7 +69,7 @@ export default function RetentionOverview() {
             barPercentage: 0.4,
           },
           {
-            data: dataChurn,
+            data: chartData.dataChurn,
             backgroundColor: "#947DE8",
             borderColor: "#947DE8",
             borderRadius: {
@@ -71,7 +81,7 @@ export default function RetentionOverview() {
             barPercentage: 0.4,
           },
           {
-            data: dataChurn,
+            data: chartData.dataChurn,
             backgroundColor: "#CABEF3",
             borderColor: "#CABEF3",
             borderRadius: {
@@ -83,7 +93,7 @@ export default function RetentionOverview() {
             barPercentage: 0.4,
           },
           {
-            data: dataChurn,
+            data: chartData.dataChurn,
             backgroundColor: "#EDE9FB",
             borderColor: "#EDE9FB",
             borderRadius: {
@@ -116,7 +126,8 @@ export default function RetentionOverview() {
               display: false,
             },
             ticks: {
-              color: "#9a9a9a",
+              color: (ctx) =>
+                Number(ctx.tick.value) % 2 === 0 ? "#262626" : "#9a9a9a",
               font: {
                 size: 12,
               },
@@ -170,27 +181,33 @@ export default function RetentionOverview() {
         chartInstance.current = null;
       }
     };
-  }, []);
+  }, [chartData]);
 
   return (
-    <div className="retention-wrapper">
-      <div className="retention-card">
-        <div className="retention-header">
-          <div className="retention-stat">
-            <div className="retention-stat-title">Коэффициент удержания</div>
-            <div className="retention-stat-value">76%</div>
-            <div className="retention-stat-subtitle">показано за месяц</div>
+    <div className={styles.retentionWrapper}>
+      <div className={styles.retentionCard}>
+        <div className={styles.retentionHeader}>
+          <div className={styles.retentionStat}>
+            <div className={styles.retentionStatTitle}>
+              Коэффициент удержания
+            </div>
+            <div className={styles.retentionStatValue}>76%</div>
+            <div className={styles.retentionStatSubtitle}>
+              показано за месяц
+            </div>
           </div>
 
-          <div className="retention-stat">
-            <div className="retention-stat-title">Отток пользователей</div>
-            <div className="retention-stat-value">45%</div>
-            <div className="retention-stat-subtitle">показано за месяц</div>
+          <div className={styles.retentionStat}>
+            <div className={styles.retentionStatTitle}>Отток пользователей</div>
+            <div className={styles.retentionStatValue}>45%</div>
+            <div className={styles.retentionStatSubtitle}>
+              показано за месяц
+            </div>
           </div>
         </div>
 
-        <div className="retention-chart-wrapper">
-          <div className="retention-chart">
+        <div className={styles.retentionChartWrapper}>
+          <div className={styles.retentionChart}>
             <div
               style={{
                 position: "relative",
@@ -201,59 +218,39 @@ export default function RetentionOverview() {
               <canvas ref={chartRef} />
             </div>
 
-            <div className="retention-tooltip">
-              <div className="retention-tooltip-title">Число людей</div>
-              <div className="retention-tooltip-grid">
-                <div className="tooltip-row">
-                  <div
-                    className="tooltip-cell"
-                    style={{ backgroundColor: "#EDE9FB" }}
-                  />
-                  <div className="tooltip-number">86</div>
-                </div>
-                <div className="tooltip-row">
-                  <div
-                    className="tooltip-cell"
-                    style={{ backgroundColor: "#947DE8" }}
-                  />
-                  <div className="tooltip-number">59</div>
-                </div>
-
-                <div className="tooltip-row">
-                  <div
-                    className="tooltip-cell"
-                    style={{ backgroundColor: "#CABEF3" }}
-                  />
-                  <div className="tooltip-number">55</div>
-                </div>
-                <div className="tooltip-row">
-                  <div
-                    className="tooltip-cell"
-                    style={{ backgroundColor: "#6D4EDF" }}
-                  />
-                  <div className="tooltip-number">42</div>
-                </div>
+            <div className={styles.retentionTooltip}>
+              <div className={styles.retentionTooltipTitle}>Число людей</div>
+              <div className={styles.retentionTooltipGrid}>
+                {TOOLTIP_DATA.map((item, index) => (
+                  <div key={index} className={styles.tooltipRow}>
+                    <div
+                      className={styles.tooltipCell}
+                      style={{ backgroundColor: item.color }}
+                    />
+                    <div className={styles.tooltipNumber}>{item.value}</div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
 
-        <div className="retention-legend">
-          <div className="retention-legend-item">
+        <div className={styles.retentionLegend}>
+          <div className={styles.retentionLegendItem}>
             <span>более 1 покупки</span>
-            <span className="retention-legend-dot level-1" />
+            <span className={`${styles.retentionLegendDot} ${styles.level1}`} />
           </div>
-          <div className="retention-legend-item">
+          <div className={styles.retentionLegendItem}>
             <span>более 2 покупок</span>
-            <span className="retention-legend-dot level-2" />
+            <span className={`${styles.retentionLegendDot} ${styles.level2}`} />
           </div>
-          <div className="retention-legend-item">
+          <div className={styles.retentionLegendItem}>
             <span>более 3 покупок</span>
-            <span className="retention-legend-dot level-3" />
+            <span className={`${styles.retentionLegendDot} ${styles.level3}`} />
           </div>
-          <div className="retention-legend-item">
+          <div className={styles.retentionLegendItem}>
             <span>более 4 покупок</span>
-            <span className="retention-legend-dot level-4" />
+            <span className={`${styles.retentionLegendDot} ${styles.level4}`} />
           </div>
         </div>
       </div>

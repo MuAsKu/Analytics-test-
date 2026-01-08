@@ -1,11 +1,11 @@
-.analytics-wrapper {
+.analyticsWrapper {
   flex: 1;
   min-width: 0;
   box-sizing: border-box;
   font-family: Inter, sans-serif;
 }
 
-.analytics-card {
+.analyticsCard {
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 24px;
@@ -15,33 +15,33 @@
   box-sizing: border-box;
 }
 
-.header-row {
+.headerRow {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
   gap: 20px;
 }
 
-.stat-title {
+.statTitle {
   font-weight: 500;
   font-size: 16px;
   color: #000000;
 }
 
-.stat-value {
+.statValue {
   font-size: 32px;
   font-weight: 600;
   margin: 6px 0;
   color: #000000;
 }
 
-.stat-subtitle {
+.statSubtitle {
   font-size: 14px;
   font-weight: 400;
   color: #737373;
 }
 
-.chart-wrapper {
+.chartWrapper {
   display: flex;
   width: 100%;
 }
@@ -53,66 +53,6 @@
   overflow: hidden;
   border-left: 1px solid #eee;
   border-bottom: 1px solid #eee;
-}
-
-.h-grid {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: #efefef;
-}
-
-.v-grid {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: #f3f3f3;
-}
-
-.bars-row {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: flex-end;
-  padding-bottom: 1px;
-  z-index: 1;
-}
-
-.bar-group {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  gap: 4px;
-}
-
-.bar {
-  width: 6px;
-  border-radius: 3px;
-}
-
-.bar-light {
-  background: #e9e7ff;
-}
-
-.bar-dark {
-  background: #6c63ff;
-}
-
-.vertical-lines {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-}
-
-.vertical-line {
-  position: absolute;
-  width: 2px;
-  background: #ad46e5;
-  bottom: 0;
-  transform: translateX(-50%);
-  border-radius: 1px;
 }
 
 .tooltip {
@@ -129,12 +69,12 @@
   z-index: 3;
 }
 
-.tooltip-title {
+.tooltipTitle {
   font-weight: 600;
   margin-bottom: 8px;
 }
 
-.tooltip-row {
+.tooltipRow {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -147,10 +87,11 @@
   border-radius: 3px;
 }
 
-.dot-light {
+.dotLight {
   background: #e9e7ff;
 }
 
-.dot-dark {
+.dotDark {
   background: #6c63ff;
 }
+

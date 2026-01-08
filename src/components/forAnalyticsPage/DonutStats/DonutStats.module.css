@@ -1,10 +1,10 @@
-.donut-grid {
+.donutGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
 }
 
-.donut-card {
+.donutCard {
   background: #fff;
   border-radius: 24px;
   border: 1px solid #e5e7eb;
@@ -14,7 +14,7 @@
   font-family: Inter, sans-serif;
 }
 
-.donut-chart {
+.donutChart {
   margin-bottom: 12px;
   display: flex;
   justify-content: center;
@@ -22,32 +22,32 @@
   height: 160px;
 }
 
-.donut-chart canvas {
+.donutChart canvas {
   width: 160px !important;
   height: 160px !important;
 }
 
-.donut-title {
+.donutTitle {
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 24px;
   color: #262626;
 }
 
-.donut-legend {
+.donutLegend {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.donut-row {
+.donutRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
 }
 
-.donut-label {
+.donutLabel {
   display: flex;
   align-items: center;
   font-size: 14px;
@@ -62,18 +62,19 @@
   border-radius: 50%;
 }
 
-.donut-values {
+.donutValues {
   display: flex;
   gap: 12px;
   align-items: center;
 }
 
-.donut-values span {
+.donutValues span {
   color: #737373;
   font-size: 12px;
 }
 
-.donut-values strong {
+.donutValues strong {
   font-weight: 600;
   color: #171717;
 }
+

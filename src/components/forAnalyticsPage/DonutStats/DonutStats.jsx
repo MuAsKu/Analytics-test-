@@ -1,52 +1,52 @@
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect, useMemo } from "react";
 import { Chart } from "chart.js/auto";
-import "./DonutStats.css";
+import styles from "./DonutStats.module.css";
 
-export default function DonutStats() {
-  return (
-    <div className="donut-grid">
-      <DonutCard
-        title="Активность карт"
-        items={[
-          {
-            label: "Активных карт",
-            value: 122,
-            percent: "45.6%",
-            color: "#7C6EE6",
-          },
-          {
-            label: "Неактивных карт",
-            value: 122,
-            percent: "45.6%",
-            color: "#C9C4F7",
-          },
-        ]}
-      />
-
-      <DonutCard
-        title="Добавленных карт"
-        items={[
-          {
-            label: "Выпущено карт",
-            value: 5000,
-            percent: "45.6%",
-            color: "#7C6EE6",
-          },
-          {
-            label: "Добавили к себе",
-            value: 124,
-            percent: "45.6%",
-            color: "#C9C4F7",
-          },
-        ]}
-      />
-    </div>
-  );
-}
+const DONUT_CARDS_DATA = [
+  {
+    title: "Активность карт",
+    items: [
+      {
+        label: "Активных карт",
+        value: 122,
+        percent: "45.6%",
+        color: "#7C6EE6",
+      },
+      {
+        label: "Неактивных карт",
+        value: 122,
+        percent: "45.6%",
+        color: "#C9C4F7",
+      },
+    ],
+  },
+  {
+    title: "Добавленных карт",
+    items: [
+      {
+        label: "Выпущено карт",
+        value: 5000,
+        percent: "45.6%",
+        color: "#7C6EE6",
+      },
+      {
+        label: "Добавили к себе",
+        value: 124,
+        percent: "45.6%",
+        color: "#C9C4F7",
+      },
+    ],
+  },
+];
 
 function DonutCard({ title, items }) {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
+
+  const chartColors = useMemo(
+    () => items.map((item) => item.color),
+    [items]
+  );
 
   useEffect(() => {
     if (!chartRef.current) return;
@@ -63,7 +63,7 @@ function DonutCard({ title, items }) {
         datasets: [
           {
             data: [70, 30],
-            backgroundColor: items.map((item) => item.color),
+            backgroundColor: chartColors,
             borderWidth: 0,
             borderRadius: 0,
             spacing: 0,
@@ -94,30 +94,40 @@ function DonutCard({ title, items }) {
         chartInstance.current.destroy();
       }
     };
-  }, [items]);
+  }, [chartColors]);
 
   return (
-    <div className="donut-card">
-      <div className="donut-chart">
+    <div className={styles.donutCard}>
+      <div className={styles.donutChart}>
         <canvas ref={chartRef} width="160" height="160" />
       </div>
 
-      <div className="donut-title">{title}</div>
+      <div className={styles.donutTitle}>{title}</div>
 
-      <div className="donut-legend">
+      <div className={styles.donutLegend}>
         {items.map((item) => (
-          <div key={item.label} className="donut-row">
-            <div className="donut-label">
-              <span className="donutDot" style={{ background: item.color }} />
+          <div key={item.label} className={styles.donutRow}>
+            <div className={styles.donutLabel}>
+              <span className={styles.donutDot} style={{ background: item.color }} />
               {item.label}
             </div>
-            <div className="donut-values">
+            <div className={styles.donutValues}>
               <span>{item.value}</span>
               <strong>{item.percent}</strong>
             </div>
           </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+export default function DonutStats() {
+  return (
+    <div className={styles.donutGrid}>
+      {DONUT_CARDS_DATA.map((card) => (
+        <DonutCard key={card.title} title={card.title} items={card.items} />
+      ))}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect, useMemo } from "react";
 import {
   Chart,
   CategoryScale,
@@ -9,7 +9,7 @@ import {
   Legend,
   Title,
 } from "chart.js";
-import "./AnalyticsCards.css";
+import styles from "./AnalyticsCards.module.css";
 
 Chart.register(
   CategoryScale,
@@ -25,6 +25,15 @@ export default function AnalyticsCards() {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
 
+  const chartData = useMemo(() => {
+    const days = Array.from({ length: 31 }, (_, i) => i + 1);
+    const dataDark = days.map(() => Math.floor(Math.random() * 25) + 20);
+    const dataLight = days.map(
+      (_, i) => dataDark[i] + Math.floor(Math.random() * 15) + 8
+    );
+    return { days, dataDark, dataLight };
+  }, []);
+
   useEffect(() => {
     const ctx = chartRef.current;
 
@@ -35,20 +44,14 @@ export default function AnalyticsCards() {
       chartInstance.current = null;
     }
 
-    const days = Array.from({ length: 31 }, (_, i) => i + 1);
-    const dataDark = days.map(() => Math.floor(Math.random() * 25) + 20);
-    const dataLight = days.map(
-      (_, i) => dataDark[i] + Math.floor(Math.random() * 15) + 8
-    );
-
     chartInstance.current = new Chart(ctx, {
       type: "bar",
       data: {
-        labels: days.map((d) => d.toString()),
+        labels: chartData.days.map((d) => d.toString()),
         datasets: [
           {
             label: "Накопленные",
-            data: dataLight,
+            data: chartData.dataLight,
             backgroundColor: "#CABEF3",
             borderColor: "#CABEF3",
             borderRadius: {
@@ -61,7 +64,7 @@ export default function AnalyticsCards() {
           },
           {
             label: "Потраченные",
-            data: dataDark,
+            data: chartData.dataDark,
             backgroundColor: "#EDE9FB",
             borderColor: "#EDE9FB",
             borderWidth: 0,
@@ -95,7 +98,8 @@ export default function AnalyticsCards() {
               display: false,
             },
             ticks: {
-              color: "#9a9a9a",
+              color: (ctx) =>
+                Number(ctx.tick.value) % 2 === 0 ? "#262626" : "#9a9a9a",
               font: {
                 size: 12,
               },
@@ -149,27 +153,27 @@ export default function AnalyticsCards() {
         chartInstance.current = null;
       }
     };
-  }, []);
+  }, [chartData]);
 
   return (
-    <div className="analytics-wrapper">
-      <div className="analytics-card">
-        <div className="header-row">
-          <div className="stat">
-            <div className="stat-title">Среднее количество накопленных</div>
-            <div className="stat-value">234 567</div>
-            <div className="stat-subtitle">показано за месяц</div>
+    <div className={styles.analyticsWrapper}>
+      <div className={styles.analyticsCard}>
+        <div className={styles.headerRow}>
+          <div className={styles.stat}>
+            <div className={styles.statTitle}>Среднее количество накопленных</div>
+            <div className={styles.statValue}>234 567</div>
+            <div className={styles.statSubtitle}>показано за месяц</div>
           </div>
 
-          <div className="stat">
-            <div className="stat-title">Среднее количество потраченных</div>
-            <div className="stat-value">654 578</div>
-            <div className="stat-subtitle">показано за месяц</div>
+          <div className={styles.stat}>
+            <div className={styles.statTitle}>Среднее количество потраченных</div>
+            <div className={styles.statValue}>654 578</div>
+            <div className={styles.statSubtitle}>показано за месяц</div>
           </div>
         </div>
 
-        <div className="chart-wrapper">
-          <div className="chart">
+        <div className={styles.chartWrapper}>
+          <div className={styles.chart}>
             <div
               style={{
                 position: "relative",
@@ -180,14 +184,14 @@ export default function AnalyticsCards() {
               <canvas ref={chartRef} id="analytics-chart" />
             </div>
 
-            <div className="tooltip">
-              <div className="tooltip-title">Бонусы</div>
-              <div className="tooltip-row">
-                <span className="dot dot-light" />
+            <div className={styles.tooltip}>
+              <div className={styles.tooltipTitle}>Бонусы</div>
+              <div className={styles.tooltipRow}>
+                <span className={`${styles.dot} ${styles.dotLight}`} />
                 85 (накопленные)
               </div>
-              <div className="tooltip-row">
-                <span className="dot dot-dark" />
+              <div className={styles.tooltipRow}>
+                <span className={`${styles.dot} ${styles.dotDark}`} />
                 55 (потраченные)
               </div>
             </div>

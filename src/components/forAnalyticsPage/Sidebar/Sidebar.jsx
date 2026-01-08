@@ -1,5 +1,5 @@
-import { useState } from "react";
-import "./Sidebar.css";
+import { useState, useCallback } from "react";
+import styles from "./Sidebar.module.css";
 
 export default function Sidebar() {
   const [openCards, setOpenCards] = useState(false);
@@ -8,145 +8,151 @@ export default function Sidebar() {
   const [openClients, setOpenClients] = useState(false);
   const [openIntegrations, setOpenIntegrations] = useState(false);
 
+  const toggleCards = useCallback(() => setOpenCards((prev) => !prev), []);
+  const toggleCatalogs = useCallback(() => setOpenCatalogs((prev) => !prev), []);
+  const toggleTeam = useCallback(() => setOpenTeam((prev) => !prev), []);
+  const toggleClients = useCallback(() => setOpenClients((prev) => !prev), []);
+  const toggleIntegrations = useCallback(() => setOpenIntegrations((prev) => !prev), []);
+
   return (
-    <aside className="sidebar">
-      <div className="logo">
+    <aside className={styles.sidebar}>
+      <div className={styles.logo}>
         <img src="/logo.svg" alt="logo" />
       </div>
 
-      <nav className="menu">
-        <div className="menu-item">
-          <img src="/icons/home.svg" alt="home" className="icon" />
+      <nav className={styles.menu}>
+        <div className={styles.menuItem}>
+          <img src="/icons/home.svg" alt="home" className={styles.icon} />
           Главная
         </div>
 
-        <div className="menu-item">
-          <img src="/icons/analytics.svg" alt="analytics" className="icon" />
+        <div className={styles.menuItem}>
+          <img src="/icons/analytics.svg" alt="analytics" className={styles.icon} />
           Аналитика
         </div>
 
-        <div className="menu-item">
+        <div className={styles.menuItem}>
           <img
             src="/icons/notifications.svg"
             alt="notifications"
-            className="icon"
+            className={styles.icon}
           />
           Уведомления
         </div>
 
-        <div className="menu-section">Инструменты</div>
+        <div className={styles.menuSection}>Инструменты</div>
 
         <div
-          className="menu-item accordion"
-          onClick={() => setOpenCards(!openCards)}
+          className={`${styles.menuItem} ${styles.accordion}`}
+          onClick={toggleCards}
         >
-          <div className="row">
-            <img src="/icons/card.svg" alt="card" className="icon" />
+          <div className={styles.row}>
+            <img src="/icons/card.svg" alt="card" className={styles.icon} />
             Карты
           </div>
-          <span className={`arrow ${openCards ? "open" : ""}`} />
+          <span className={`${styles.arrow} ${openCards ? styles.open : ""}`} />
         </div>
 
         {openCards && (
-          <div className="submenu">
-            <div className="submenu-line" />
-            <div className="submenu-item">Кэшбек карта</div>
-            <div className="submenu-item">Скидочная карта</div>
-            <div className="submenu-item">Купоны</div>
+          <div className={styles.submenu}>
+            <div className={styles.submenuLine} />
+            <div className={styles.submenuItem}>Кэшбек карта</div>
+            <div className={styles.submenuItem}>Скидочная карта</div>
+            <div className={styles.submenuItem}>Купоны</div>
           </div>
         )}
 
         <div
-          className="menu-item accordion"
-          onClick={() => setOpenCatalogs(!openCatalogs)}
+          className={`${styles.menuItem} ${styles.accordion}`}
+          onClick={toggleCatalogs}
         >
-          <div className="row">
-            <img src="/icons/catalog.svg" alt="catalog" className="icon" />
+          <div className={styles.row}>
+            <img src="/icons/catalog.svg" alt="catalog" className={styles.icon} />
             Каталоги
           </div>
-          <span className={`arrow ${openCatalogs ? "open" : ""}`} />
+          <span className={`${styles.arrow} ${openCatalogs ? styles.open : ""}`} />
         </div>
 
         {openCatalogs && (
-          <div className="submenu">
-            <div className="submenu-line" />
-            <div className="submenu-item">Мои каталоги</div>
-            <div className="submenu-item">Все каталоги</div>
+          <div className={styles.submenu}>
+            <div className={styles.submenuLine} />
+            <div className={styles.submenuItem}>Мои каталоги</div>
+            <div className={styles.submenuItem}>Все каталоги</div>
           </div>
         )}
 
-        <div className="menu-section">Управление</div>
+        <div className={styles.menuSection}>Управление</div>
 
         <div
-          className="menu-item accordion"
-          onClick={() => setOpenTeam(!openTeam)}
+          className={`${styles.menuItem} ${styles.accordion}`}
+          onClick={toggleTeam}
         >
-          <div className="row">
-            <img src="/icons/team.svg" alt="team" className="icon" />
+          <div className={styles.row}>
+            <img src="/icons/team.svg" alt="team" className={styles.icon} />
             Команда
           </div>
-          <span className={`arrow ${openTeam ? "open" : ""}`} />
+          <span className={`${styles.arrow} ${openTeam ? styles.open : ""}`} />
         </div>
 
         {openTeam && (
-          <div className="submenu">
-            <div className="submenu-line" />
-            <div className="submenu-item">Сотрудники</div>
-            <div className="submenu-item">Должности</div>
-            <div className="submenu-item">Реферальная система</div>
+          <div className={styles.submenu}>
+            <div className={styles.submenuLine} />
+            <div className={styles.submenuItem}>Сотрудники</div>
+            <div className={styles.submenuItem}>Должности</div>
+            <div className={styles.submenuItem}>Реферальная система</div>
           </div>
         )}
 
         <div
-          className="menu-item accordion"
-          onClick={() => setOpenClients(!openClients)}
+          className={`${styles.menuItem} ${styles.accordion}`}
+          onClick={toggleClients}
         >
-          <div className="row">
-            <img src="/icons/clients.svg" alt="clients" className="icon" />
+          <div className={styles.row}>
+            <img src="/icons/clients.svg" alt="clients" className={styles.icon} />
             Клиенты
           </div>
-          <span className={`arrow ${openClients ? "open" : ""}`} />
+          <span className={`${styles.arrow} ${openClients ? styles.open : ""}`} />
         </div>
 
         {openClients && (
-          <div className="submenu">
-            <div className="submenu-line" />
-            <div className="submenu-item">Аналитика</div>
-            <div className="submenu-item">Реферальная система</div>
+          <div className={styles.submenu}>
+            <div className={styles.submenuLine} />
+            <div className={styles.submenuItem}>Аналитика</div>
+            <div className={styles.submenuItem}>Реферальная система</div>
           </div>
         )}
         <div
-          className="menu-item accordion"
-          onClick={() => setOpenIntegrations(!openIntegrations)}
+          className={`${styles.menuItem} ${styles.accordion}`}
+          onClick={toggleIntegrations}
         >
-          <div className="row">
+          <div className={styles.row}>
             <img
               src="/icons/integrations.svg"
               alt="integrations"
-              className="icon"
+              className={styles.icon}
             />
             Интеграции
           </div>
-          <span className={`arrow ${openIntegrations ? "open" : ""}`} />
+          <span className={`${styles.arrow} ${openIntegrations ? styles.open : ""}`} />
         </div>
 
         {openIntegrations && (
-          <div className="submenu">
-            <div className="submenu-line" />
-            <div className="submenu-item">Пусто</div>
-            <div className="submenu-item">Пусто</div>
+          <div className={styles.submenu}>
+            <div className={styles.submenuLine} />
+            <div className={styles.submenuItem}>Пусто</div>
+            <div className={styles.submenuItem}>Пусто</div>
           </div>
         )}
 
-        <div className="menu-footer">
-          <div className="menu-item">
-            <img src="/icons/support.svg" alt="support" className="icon" />
+        <div className={styles.menuFooter}>
+          <div className={styles.menuItem}>
+            <img src="/icons/support.svg" alt="support" className={styles.icon} />
             Поддержка
-            <span className="dots">•••</span>
+            <span className={styles.dots}>•••</span>
           </div>
 
-          <div className="menu-item">
-            <img src="/icons/settings.svg" alt="settings" className="icon" />
+          <div className={styles.menuItem}>
+            <img src="/icons/settings.svg" alt="settings" className={styles.icon} />
             Настройки
           </div>
         </div>
