@@ -36,8 +36,10 @@ export default function AnalyticsCards() {
     }
 
     const days = Array.from({ length: 31 }, (_, i) => i + 1);
-    const dataLight = days.map(() => Math.floor(Math.random() * 40) + 40);
-    const dataDark = days.map(() => Math.floor(Math.random() * 30) + 30);
+    const dataDark = days.map(() => Math.floor(Math.random() * 25) + 20);
+    const dataLight = days.map(
+      (_, i) => dataDark[i] + Math.floor(Math.random() * 15) + 8
+    );
 
     chartInstance.current = new Chart(ctx, {
       type: "bar",
@@ -47,22 +49,29 @@ export default function AnalyticsCards() {
           {
             label: "Накопленные",
             data: dataLight,
-            backgroundColor: "#e9e7ff",
-            borderColor: "#e9e7ff",
-            borderWidth: 0,
-            borderRadius: 3,
-            barPercentage: 0.3,
-            categoryPercentage: 0.8,
+            backgroundColor: "#CABEF3",
+            borderColor: "#CABEF3",
+            borderRadius: {
+              topLeft: 3,
+              topRight: 3,
+              bottomLeft: 0,
+              bottomRight: 0,
+            },
+            barPercentage: 0.4,
           },
           {
             label: "Потраченные",
             data: dataDark,
-            backgroundColor: "#6c63ff",
-            borderColor: "#6c63ff",
+            backgroundColor: "#EDE9FB",
+            borderColor: "#EDE9FB",
             borderWidth: 0,
-            borderRadius: 3,
-            barPercentage: 0.3,
-            categoryPercentage: 0.8,
+            borderRadius: {
+              topLeft: 3,
+              topRight: 3,
+              bottomLeft: 0,
+              bottomRight: 0,
+            },
+            barPercentage: 0.4,
           },
         ],
       },
@@ -90,18 +99,15 @@ export default function AnalyticsCards() {
               font: {
                 size: 12,
               },
-              crossAlign: "far",
-              labelOffset: 4,
+              crossAlign: "near",
               autoSkip: false,
               maxRotation: 0,
               minRotation: 0,
-              callback: function (val) {
-                return this.getLabelForValue(val);
-              },
             },
             afterFit: function (scale) {
               scale.height = 30;
             },
+            stacked: true,
           },
           y: {
             beginAtZero: true,
@@ -118,10 +124,8 @@ export default function AnalyticsCards() {
                 size: 12,
               },
               stepSize: 20,
-              callback: function (value) {
-                return value;
-              },
             },
+            stacked: true,
           },
         },
         interaction: {
@@ -130,7 +134,10 @@ export default function AnalyticsCards() {
         },
         layout: {
           padding: {
+            left: 5,
+            right: 5,
             bottom: 25,
+            top: 5,
           },
         },
       },

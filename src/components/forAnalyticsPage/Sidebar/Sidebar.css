@@ -1,33 +1,14 @@
 .sidebar {
-  width: 260px;
+  width: 280px;
   height: 100%;
   background: #ffffff;
-  border-right: 1px solid #f0f0f0;
-  padding: 20px 16px;
   font-family: Inter, sans-serif;
   overflow: auto;
+  border-right: 1px solid #e5e7eb;
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 28px;
-}
-
-.logo-icon {
-  width: 28px;
-  height: 28px;
-}
-
-.logo-text {
-  font-size: 18px;
-  font-weight: 700;
-  color: #111;
-}
-
-.logo-text span {
-  color: #6366f1;
+  padding: 8px 12px
 }
 
 .menu {
@@ -38,15 +19,20 @@
 
 .menu-item {
   display: flex;
-  font-weight: 600;
+  font-weight: 500;
   align-items: center;
   gap: 12px;
   padding: 10px 12px;
   border-radius: 10px;
-  color: #4b5563;
+  color: #222222;
   cursor: pointer;
   font-size: 14px;
 }
+
+.menu-item.accordion .arrow {
+  margin: 8px 12px ;
+}
+
 
 .menu-item:hover {
   background: #EDE9FB;
@@ -59,19 +45,25 @@
   font-weight: 500;
 }
 
+.menu-item:hover .icon {
+  filter: brightness(0) saturate(100%) invert(25%) sepia(80%) saturate(3000%) hue-rotate(245deg) brightness(90%) contrast(90%);
+}
+
 .menu-section {
   margin: 16px 12px 6px;
-  font-size: 12px;
-  color: #9ca3af;
+  font-size: 14px;
+  color: #A3A3A3;
+  padding-top: 8px;
 }
 
 .icon {
   width: 24px;
   height: 24px;
+  transition: filter 0.2s ease;
 }
 
-.icon:hover {
-  color: #3D1FAB;
+.icon path {
+  transition: fill 0.2s ease;
 }
 
 .accordion {
@@ -82,8 +74,8 @@
   margin-left: auto;
   width: 10px;
   height: 10px;
-  border-right: 2px solid #9ca3af;
-  border-bottom: 2px solid #9ca3af;
+  border-right: 2px solid #737373;
+  border-bottom: 2px solid #737373;
   transform: rotate(-45deg);
   transition: 0.2s;
 }
@@ -92,10 +84,17 @@
   transform: rotate(45deg);
 }
 
+.menu-item:hover .arrow {
+  border-right-color: #3D1FAB;
+  border-bottom-color: #3D1FAB;
+}
+
 .submenu {
   position: relative;
+  font-weight: 500;
   margin-left: 22px;
   padding-left: 18px;
+  color: #737373;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -128,11 +127,6 @@
   display: flex;
   align-items: center;
   gap: 12px;
-}
-
-.arrow.right {
-  transform: rotate(-45deg);
-  margin-left: auto;
 }
 
 .menu-footer {

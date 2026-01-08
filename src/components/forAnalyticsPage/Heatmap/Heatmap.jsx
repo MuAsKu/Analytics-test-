@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useCallback } from "react";
 import "./Heatmap.css";
 
 const HOURS = [
@@ -15,22 +15,38 @@ const HOURS = [
 ];
 
 const DAYS = Array.from({ length: 31 }, (_, i) => i + 1);
-
 const LEVELS = ["level-0", "level-1", "level-2", "level-3"];
 
 export default function Heatmap() {
   const [tooltip, setTooltip] = useState(null);
   const [activeCell, setActiveCell] = useState(null);
 
-  const data = useMemo(() => {
-    return DAYS.map((day) =>
-      HOURS.map((hour) => ({
-        day,
-        hour,
-        level: LEVELS[Math.floor(Math.random() * LEVELS.length)],
-        value: 115,
-      }))
-    );
+  const data = useMemo(
+    () =>
+      DAYS.map((day) =>
+        HOURS.map((hour) => ({
+          day,
+          hour,
+          level: LEVELS[Math.floor(Math.random() * LEVELS.length)],
+          value: 115,
+        }))
+      ),
+    []
+  );
+
+  const handleCellMouseMove = useCallback((e, cell) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setActiveCell({ day: cell.day, hour: cell.hour });
+    setTooltip({
+      ...cell,
+      left: rect.right + 5,
+      top: rect.top,
+    });
+  }, []);
+
+  const handleCellMouseLeave = useCallback(() => {
+    setActiveCell(null);
+    setTooltip(null);
   }, []);
 
   return (
@@ -63,19 +79,8 @@ export default function Heatmap() {
                     className={`heatmap-cell ${cell.level} ${
                       isActive ? "active" : ""
                     }`}
-                    onMouseEnter={(e) => {
-                      const rect = e.currentTarget.getBoundingClientRect();
-                      setActiveCell(cell);
-                      setTooltip({
-                        ...cell,
-                        top: rect.top + window.scrollY - 100,
-                        left: rect.left + window.scrollX + 240,
-                      });
-                    }}
-                    onMouseLeave={() => {
-                      setActiveCell(null);
-                      setTooltip(null);
-                    }}
+                    onMouseMove={(e) => handleCellMouseMove(e, cell)}
+                    onMouseLeave={handleCellMouseLeave}
                   />
                 );
               })
@@ -83,7 +88,6 @@ export default function Heatmap() {
           </div>
 
           <div className="heatmap-x-container">
-            <div style={{ width: "40px", flexShrink: 0 }} />
             <div className="heatmap-x">
               {DAYS.map((day) => (
                 <div key={day} className="x-label">
@@ -115,7 +119,7 @@ export default function Heatmap() {
           className="heatmap-tooltip"
           style={{
             top: tooltip.top,
-            left: tooltip.left - 220,
+            left: tooltip.left,
           }}
         >
           <div className="tooltip-time">

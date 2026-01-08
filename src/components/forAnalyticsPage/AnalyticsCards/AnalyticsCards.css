@@ -23,20 +23,22 @@
 }
 
 .stat-title {
-  font-weight: 600;
-  font-size: 14px;
-  color: #010101;
+  font-weight: 500;
+  font-size: 16px;
+  color: #000000;
 }
 
 .stat-value {
   font-size: 32px;
   font-weight: 600;
   margin: 6px 0;
+  color: #000000;
 }
 
 .stat-subtitle {
-  font-size: 12px;
-  color: #b5b5b5;
+  font-size: 14px;
+  font-weight: 400;
+  color: #737373;
 }
 
 .chart-wrapper {

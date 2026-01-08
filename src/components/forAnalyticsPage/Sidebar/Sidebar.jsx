@@ -6,14 +6,12 @@ export default function Sidebar() {
   const [openCatalogs, setOpenCatalogs] = useState(false);
   const [openTeam, setOpenTeam] = useState(false);
   const [openClients, setOpenClients] = useState(false);
+  const [openIntegrations, setOpenIntegrations] = useState(false);
 
   return (
     <aside className="sidebar">
       <div className="logo">
-        <img src="/logo.png" alt="logo" className="logo-icon" />
-        <span className="logo-text">
-          recard<span>me</span>
-        </span>
+        <img src="/logo.svg" alt="logo" />
       </div>
 
       <nav className="menu">
@@ -117,16 +115,28 @@ export default function Sidebar() {
             <div className="submenu-item">Реферальная система</div>
           </div>
         )}
-
-        <div className="menu-item">
-          <img
-            src="/icons/integrations.svg"
-            alt="integrations"
-            className="icon"
-          />
-          Интеграции
-          <span className="arrow right" />
+        <div
+          className="menu-item accordion"
+          onClick={() => setOpenIntegrations(!openIntegrations)}
+        >
+          <div className="row">
+            <img
+              src="/icons/integrations.svg"
+              alt="integrations"
+              className="icon"
+            />
+            Интеграции
+          </div>
+          <span className={`arrow ${openIntegrations ? "open" : ""}`} />
         </div>
+
+        {openIntegrations && (
+          <div className="submenu">
+            <div className="submenu-line" />
+            <div className="submenu-item">Пусто</div>
+            <div className="submenu-item">Пусто</div>
+          </div>
+        )}
 
         <div className="menu-footer">
           <div className="menu-item">

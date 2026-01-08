@@ -1,21 +1,45 @@
 import React, { useRef, useEffect } from "react";
-import { Chart } from "chart.js/auto";
+import {
+  Chart,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  BarController,
+  Tooltip as ChartTooltip,
+  Legend,
+  Title,
+} from "chart.js";
 import "./RetentionOverview.css";
+
+Chart.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  BarController,
+  ChartTooltip,
+  Legend,
+  Title
+);
 
 export default function RetentionOverview() {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
 
   useEffect(() => {
-    if (!chartRef.current) return;
+    const ctx = chartRef.current;
+
+    if (!ctx) return;
 
     if (chartInstance.current) {
       chartInstance.current.destroy();
+      chartInstance.current = null;
     }
 
-    const ctx = chartRef.current.getContext("2d");
-
     const days = Array.from({ length: 31 }, (_, i) => i + 1);
+    const dataRetention = days.map(() => Math.floor(Math.random() * 15) + 15);
+    const dataChurn = days.map(
+      (_, i) => dataRetention[i] - Math.floor(Math.random() * 3)
+    );
 
     chartInstance.current = new Chart(ctx, {
       type: "bar",
@@ -23,24 +47,52 @@ export default function RetentionOverview() {
         labels: days.map((d) => d.toString()),
         datasets: [
           {
-            label: "Коэффициент удержания",
-            data: days.map(() => Math.floor(Math.random() * 40) + 40),
-            backgroundColor: "#e9e7ff",
-            borderColor: "#e9e7ff",
-            borderWidth: 0,
-            borderRadius: 3,
-            barPercentage: 0.3,
-            categoryPercentage: 0.8,
+            data: dataRetention,
+            backgroundColor: "#6D4EDF",
+            borderColor: "#6D4EDF",
+            borderRadius: {
+              topLeft: 3,
+              topRight: 3,
+              bottomLeft: 0,
+              bottomRight: 0,
+            },
+            barPercentage: 0.4,
           },
           {
-            label: "Отток пользователей",
-            data: days.map(() => Math.floor(Math.random() * 30) + 30),
-            backgroundColor: "#6c63ff",
-            borderColor: "#6c63ff",
-            borderWidth: 0,
-            borderRadius: 3,
-            barPercentage: 0.3,
-            categoryPercentage: 0.8,
+            data: dataChurn,
+            backgroundColor: "#947DE8",
+            borderColor: "#947DE8",
+            borderRadius: {
+              topLeft: 3,
+              topRight: 3,
+              bottomLeft: 0,
+              bottomRight: 0,
+            },
+            barPercentage: 0.4,
+          },
+          {
+            data: dataChurn,
+            backgroundColor: "#CABEF3",
+            borderColor: "#CABEF3",
+            borderRadius: {
+              topLeft: 3,
+              topRight: 3,
+              bottomLeft: 0,
+              bottomRight: 0,
+            },
+            barPercentage: 0.4,
+          },
+          {
+            data: dataChurn,
+            backgroundColor: "#EDE9FB",
+            borderColor: "#EDE9FB",
+            borderRadius: {
+              topLeft: 3,
+              topRight: 3,
+              bottomLeft: 0,
+              bottomRight: 0,
+            },
+            barPercentage: 0.4,
           },
         ],
       },
@@ -68,18 +120,15 @@ export default function RetentionOverview() {
               font: {
                 size: 12,
               },
-              crossAlign: "far",
-              labelOffset: 4,
+              crossAlign: "near",
               autoSkip: false,
               maxRotation: 0,
               minRotation: 0,
-              callback: function (val) {
-                return this.getLabelForValue(val);
-              },
             },
             afterFit: function (scale) {
               scale.height = 30;
             },
+            stacked: true,
           },
           y: {
             beginAtZero: true,
@@ -96,10 +145,8 @@ export default function RetentionOverview() {
                 size: 12,
               },
               stepSize: 20,
-              callback: function (value) {
-                return value;
-              },
             },
+            stacked: true,
           },
         },
         interaction: {
@@ -108,7 +155,10 @@ export default function RetentionOverview() {
         },
         layout: {
           padding: {
+            left: 5,
+            right: 5,
             bottom: 25,
+            top: 5,
           },
         },
       },
@@ -117,6 +167,7 @@ export default function RetentionOverview() {
     return () => {
       if (chartInstance.current) {
         chartInstance.current.destroy();
+        chartInstance.current = null;
       }
     };
   }, []);

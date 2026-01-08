@@ -67,7 +67,7 @@ function DonutCard({ title, items }) {
             borderWidth: 0,
             borderRadius: 0,
             spacing: 0,
-            cutout: "70%",
+            cutout: "55%",
             borderAlign: "center",
           },
         ],
@@ -108,7 +108,7 @@ function DonutCard({ title, items }) {
         {items.map((item) => (
           <div key={item.label} className="donut-row">
             <div className="donut-label">
-              <span className="dot" style={{ background: item.color }} />
+              <span className="donutDot" style={{ background: item.color }} />
               {item.label}
             </div>
             <div className="donut-values">
