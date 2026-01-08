@@ -64,6 +64,7 @@
   width: 12px;
   height: 20px;
   background: #f3f4f6;
+  cursor: none;
 }
 
 .level-0 { background: #f3f4f6; }

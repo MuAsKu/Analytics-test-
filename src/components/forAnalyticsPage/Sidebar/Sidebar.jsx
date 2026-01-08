@@ -10,7 +10,7 @@ export default function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="logo">
-        <img src="../../../logo.png" alt="logo" className="logo-icon" />
+        <img src="/logo.png" alt="logo" className="logo-icon" />
         <span className="logo-text">
           recard<span>me</span>
         </span>
@@ -18,22 +18,18 @@ export default function Sidebar() {
 
       <nav className="menu">
         <div className="menu-item">
-          <img src="../../../icons/home.svg" alt="home" className="icon" />
+          <img src="/icons/home.svg" alt="home" className="icon" />
           Главная
         </div>
 
         <div className="menu-item">
-          <img
-            src="../../../icons/analytics.svg"
-            alt="analytics"
-            className="icon"
-          />
+          <img src="/icons/analytics.svg" alt="analytics" className="icon" />
           Аналитика
         </div>
 
         <div className="menu-item">
           <img
-            src="../../../icons/notifications.svg"
+            src="/icons/notifications.svg"
             alt="notifications"
             className="icon"
           />
@@ -47,7 +43,7 @@ export default function Sidebar() {
           onClick={() => setOpenCards(!openCards)}
         >
           <div className="row">
-            <img src="../../../icons/card.svg" alt="card" className="icon" />
+            <img src="/icons/card.svg" alt="card" className="icon" />
             Карты
           </div>
           <span className={`arrow ${openCards ? "open" : ""}`} />
@@ -67,11 +63,7 @@ export default function Sidebar() {
           onClick={() => setOpenCatalogs(!openCatalogs)}
         >
           <div className="row">
-            <img
-              src="../../../icons/catalog.svg"
-              alt="catalog"
-              className="icon"
-            />
+            <img src="/icons/catalog.svg" alt="catalog" className="icon" />
             Каталоги
           </div>
           <span className={`arrow ${openCatalogs ? "open" : ""}`} />
@@ -92,7 +84,7 @@ export default function Sidebar() {
           onClick={() => setOpenTeam(!openTeam)}
         >
           <div className="row">
-            <img src="../../../icons/team.svg" alt="team" className="icon" />
+            <img src="/icons/team.svg" alt="team" className="icon" />
             Команда
           </div>
           <span className={`arrow ${openTeam ? "open" : ""}`} />
@@ -112,11 +104,7 @@ export default function Sidebar() {
           onClick={() => setOpenClients(!openClients)}
         >
           <div className="row">
-            <img
-              src="../../../icons/clients.svg"
-              alt="clients"
-              className="icon"
-            />
+            <img src="/icons/clients.svg" alt="clients" className="icon" />
             Клиенты
           </div>
           <span className={`arrow ${openClients ? "open" : ""}`} />
@@ -125,14 +113,14 @@ export default function Sidebar() {
         {openClients && (
           <div className="submenu">
             <div className="submenu-line" />
-            <div className="submenu-item active-sub">Аналитика</div>
+            <div className="submenu-item">Аналитика</div>
             <div className="submenu-item">Реферальная система</div>
           </div>
         )}
 
         <div className="menu-item">
           <img
-            src="../../../icons/integrations.svg"
+            src="/icons/integrations.svg"
             alt="integrations"
             className="icon"
           />
@@ -142,21 +130,13 @@ export default function Sidebar() {
 
         <div className="menu-footer">
           <div className="menu-item">
-            <img
-              src="../../../icons/support.svg"
-              alt="support"
-              className="icon"
-            />
+            <img src="/icons/support.svg" alt="support" className="icon" />
             Поддержка
             <span className="dots">•••</span>
           </div>
 
           <div className="menu-item">
-            <img
-              src="../../../icons/settings.svg"
-              alt="settings"
-              className="icon"
-            />
+            <img src="/icons/settings.svg" alt="settings" className="icon" />
             Настройки
           </div>
         </div>

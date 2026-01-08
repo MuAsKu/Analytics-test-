@@ -54,7 +54,7 @@
 .top-buttons {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
 }
 
 .date-picker-container {
@@ -141,8 +141,9 @@
 
 .lang {
   display: flex;
+  padding: 8px 14px;
+  gap: 8px;
   align-items: center;
-  gap: 6px;
   font-size: 14px;
   color: #111827;
   cursor: pointer;
@@ -219,12 +220,12 @@
   height: 6px;
   border-right: 1.5px solid #9ca3af;
   border-bottom: 1.5px solid #9ca3af;
-  transform: rotate(-45deg);
-  transition: transform 0.2s ease;
-}
-
-.arrowLang.open {
   transform: rotate(45deg);
+  transition: transform 0.2s ease;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 4px;
+  margin-top: -6px;
 }
 
 .avatar {

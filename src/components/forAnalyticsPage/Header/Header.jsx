@@ -17,17 +17,17 @@ export default function Header() {
     {
       code: "RU",
       label: "Русский",
-      img: "../../../flags/russia.png",
+      img: "/flags/russia.png",
     },
     {
       code: "ENG",
       label: "English",
-      img: "../../../flags/usa.png",
+      img: "/flags/usa.png",
     },
     {
       code: "КР",
       label: "Кыргызча",
-      img: "../../../flags/kyrgyzstan.png",
+      img: "/flags/kyrgyzstan.png",
     },
   ];
 
@@ -49,15 +49,7 @@ export default function Header() {
         <h1 className="title">Добро пожаловать!</h1>
         <p className="subtitle">
           1 февраля 2025, 07:00 – 1 марта 2025, 06:00{" "}
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            style={{ fill: "#9ca3af" }}
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z" />
-          </svg>
+          <img src="/icons/help-circle.svg" alt="help" />
         </p>
       </div>
 
@@ -65,11 +57,7 @@ export default function Header() {
         <div className="top-buttons">
           <button className="scan-btn">
             Отсканировать
-            <img
-              src="../../../icons/qr-scan.svg"
-              alt="scan"
-              className="scan-icon"
-            />
+            <img src="/icons/qr-scan.svg" alt="scan" className="scan-icon" />
           </button>
 
           <div className="language-selector">
@@ -133,7 +121,7 @@ export default function Header() {
           </div>
           <button className="custom-date-btn">
             <img
-              src="../../../icons/calendar.svg"
+              src="/icons/calendar.svg"
               alt="calendar"
               className="calendar-icon"
             />

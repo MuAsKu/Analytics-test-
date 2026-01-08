@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
+import { Chart } from "chart.js/auto";
 import "./DonutStats.css";
 
 export default function DonutStats() {
@@ -44,47 +45,75 @@ export default function DonutStats() {
 }
 
 function DonutCard({ title, items }) {
+  const chartRef = useRef(null);
+  const chartInstance = useRef(null);
+
+  useEffect(() => {
+    if (!chartRef.current) return;
+
+    if (chartInstance.current) {
+      chartInstance.current.destroy();
+    }
+
+    const ctx = chartRef.current.getContext("2d");
+
+    chartInstance.current = new Chart(ctx, {
+      type: "doughnut",
+      data: {
+        datasets: [
+          {
+            data: [70, 30],
+            backgroundColor: items.map((item) => item.color),
+            borderWidth: 0,
+            borderRadius: 0,
+            spacing: 0,
+            cutout: "70%",
+            borderAlign: "center",
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          legend: {
+            display: false,
+          },
+          tooltip: {
+            enabled: false,
+          },
+        },
+        cutout: "70%",
+        radius: "90%",
+        rotation: -180,
+      },
+    });
+
+    return () => {
+      if (chartInstance.current) {
+        chartInstance.current.destroy();
+      }
+    };
+  }, [items]);
+
   return (
     <div className="donut-card">
       <div className="donut-chart">
-        <svg width="160" height="160" viewBox="0 0 160 160">
-          <circle
-            cx="80"
-            cy="80"
-            r="60"
-            stroke={items[0].color || "purple"}
-            strokeWidth="30"
-            fill="none"
-            strokeDasharray="264 377"
-            strokeDashoffset="0"
-            transform="rotate(90 80 80)"
-          />
-          <circle
-            cx="80"
-            cy="80"
-            r="60"
-            stroke={items[1].color || "gray"}
-            strokeWidth="30 "
-            fill="none"
-            strokeDasharray="113 377"
-            strokeDashoffset="-264"
-            transform="rotate(90 80 80)"
-          />
-        </svg>
+        <canvas ref={chartRef} width="160" height="160" />
       </div>
 
       <div className="donut-title">{title}</div>
 
       <div className="donut-legend">
-        {items.map((i) => (
-          <div key={i.label} className="donut-row">
+        {items.map((item) => (
+          <div key={item.label} className="donut-row">
             <div className="donut-label">
-              <span className="dot" style={{ background: i.color }} />
-              {i.label}
+              <span className="dot" style={{ background: item.color }} />
+              {item.label}
             </div>
             <div className="donut-values">
-              <span>{i.value}</span>
-              <strong>{i.percent}</strong>
+              <span>{item.value}</span>
+              <strong>{item.percent}</strong>
             </div>
           </div>
         ))}

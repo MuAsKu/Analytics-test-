@@ -44,21 +44,6 @@
   width: 100%;
 }
 
-.y-axis {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 200px;
-  font-size: 12px;
-  color: #9a9a9a;
-  margin-right: 12px;
-  flex-shrink: 0;
-}
-
-.y-tick {
-  height: 1px;
-}
-
 .chart {
   position: relative;
   flex: 1;
@@ -128,27 +113,15 @@
   border-radius: 1px;
 }
 
-.x-axis {
-  display: flex;
-  margin-left: 32px;
-  margin-top: 8px;
-  font-size: 12px;
-  color: #9a9a9a;
-}
-
-.x-tick {
-  flex: 1;
-  text-align: center;
-}
-
 .tooltip {
   position: absolute;
   top: 16px;
   left: 120px;
   background: #fff;
   border-radius: 14px;
-  padding: 12px;
-  font-size: 12px;
+  padding: 16px;
+  font-weight: 600;
+  font-size: 13px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   border: 1px solid #eee;
   z-index: 3;
@@ -167,8 +140,8 @@
 }
 
 .dot {
-  width: 10px;
-  height: 10px;
+  width: 16px;
+  height: 16px;
   border-radius: 3px;
 }
 

@@ -49,7 +49,8 @@
 }
 
 .menu-item:hover {
-  background: #f5f7fb;
+  background: #EDE9FB;
+  color: #3D1FAB;
 }
 
 .menu-item.active {
@@ -65,9 +66,12 @@
 }
 
 .icon {
-  width: 18px;
-  height: 18px;
-  border-radius: 4px;
+  width: 24px;
+  height: 24px;
+}
+
+.icon:hover {
+  color: #3D1FAB;
 }
 
 .accordion {
@@ -131,11 +135,6 @@
   margin-left: auto;
 }
 
-.active-sub {
-  background: #ede9fe;
-  color: #4f46e5;
-  font-weight: 500;
-}
 .menu-footer {
   margin-top: 50px;
   padding-top: 12px;

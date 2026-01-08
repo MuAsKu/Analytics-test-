@@ -16,6 +16,15 @@
 
 .donut-chart {
   margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 160px;
+}
+
+.donut-chart canvas {
+  width: 160px !important;
+  height: 160px !important;
 }
 
 .donut-title {
@@ -45,9 +54,9 @@
 }
 
 .dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
 }
 
 .donut-values {

@@ -66,8 +66,8 @@ export default function Heatmap() {
                     setActiveCell(cell);
                     setTooltip({
                       ...cell,
-                      top: rect.top + window.scrollY,
-                      left: rect.left + window.scrollX,
+                      top: rect.top + window.scrollY - 100,
+                      left: rect.left + window.scrollX + 240,
                     });
                   }}
                   onMouseLeave={() => {
