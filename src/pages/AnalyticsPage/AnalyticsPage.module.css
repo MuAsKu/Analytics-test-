@@ -18,6 +18,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
+  margin-top: 140px;
   padding: 0px 24px 24px 24px;
 }
 
