@@ -1,21 +1,24 @@
 .app {
   display: flex;
-  background-color: #f5f7fa;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .mainContent {
   flex: 1;
   display: flex;
   flex-direction: column;
-  width: calc(100% - 250px);
+  width: 100%;
+  margin-left: 280px;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .dashboardContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
-  padding: 24px;
-  overflow-y: auto;
+  padding: 0px 24px 24px 24px;
 }
 
 .leftColumn {
@@ -38,15 +41,9 @@
 }
 
 .dashboardContainer::-webkit-scrollbar-track {
-  background: #f1f1f1;
   border-radius: 4px;
 }
 
 .dashboardContainer::-webkit-scrollbar-thumb {
-  background: #888;
   border-radius: 4px;
-}
-
-.dashboardContainer::-webkit-scrollbar-thumb:hover {
-  background: #555;
 }

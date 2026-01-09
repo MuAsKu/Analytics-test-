@@ -1,10 +1,18 @@
 .sidebar {
   width: 280px;
-  height: 100%;
+  height: 100vh;
   background: #ffffff;
   font-family: Inter, sans-serif;
-  overflow: auto;
   border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 50;
+  min-height: 0;
 }
 
 .logo {
@@ -15,6 +23,26 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
+  flex: 1;
+  min-height: 0;
+}
+
+.menuTop {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.menuScrollable {
+  flex: 1;
+  overflow-y: auto;
+  padding-top: 6px;
+  min-height: 0;
+}
+
+.menuBottom {
+  padding-top: 12px;
+  margin-top: auto;
 }
 
 .menuItem {
@@ -129,7 +157,6 @@
 }
 
 .menuFooter {
-  margin-top: 50px;
   padding-top: 12px;
   border-top: 1px solid #f0f0f0;
 }
@@ -138,4 +165,5 @@
   margin-left: auto;
   color: #9ca3af;
 }
+
 

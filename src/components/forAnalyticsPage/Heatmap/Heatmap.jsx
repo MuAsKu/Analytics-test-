@@ -58,8 +58,12 @@ export default function Heatmap() {
   return (
     <div className={styles.heatmapCard}>
       <div className={styles.heatmapHeader}>
-        <div className={styles.heatmapTitle}>Пиковое время использования карт</div>
-        <div className={styles.heatmapSubtitle}>1 марта 2025 - 31 марта 2025</div>
+        <div className={styles.heatmapTitle}>
+          Пиковое время использования карт
+        </div>
+        <div className={styles.heatmapSubtitle}>
+          1 марта 2025 - 31 марта 2025
+        </div>
       </div>
 
       <div className={styles.heatmapBody}>
@@ -82,9 +86,9 @@ export default function Heatmap() {
                 return (
                   <div
                     key={`${cell.day}-${cell.hour}`}
-                    className={`${styles.heatmapCell} ${LEVEL_CLASS_MAP[cell.level] || ""} ${
-                      isActive ? styles.active : ""
-                    }`}
+                    className={`${styles.heatmapCell} ${
+                      LEVEL_CLASS_MAP[cell.level] || ""
+                    } ${isActive ? styles.active : ""}`}
                     onMouseMove={(e) => handleCellMouseMove(e, cell)}
                     onMouseLeave={handleCellMouseLeave}
                   />
@@ -98,7 +102,9 @@ export default function Heatmap() {
               {DAYS.map((day) => (
                 <div
                   key={day}
-                  className={`${styles.xLabel} ${day % 2 === 0 ? styles.even : ""}`}
+                  className={`${styles.xLabel} ${
+                    day % 2 === 0 ? styles.even : ""
+                  }`}
                 >
                   {day}
                 </div>
@@ -136,7 +142,11 @@ export default function Heatmap() {
             марта 2025
           </div>
           <div className={styles.tooltipRow}>
-            <span className={`${styles.tooltipDot} ${LEVEL_CLASS_MAP[tooltip.level] || ""}`} />
+            <span
+              className={`${styles.tooltipDot} ${
+                LEVEL_CLASS_MAP[tooltip.level] || ""
+              }`}
+            />
             <span>{tooltip.value} раз</span>
           </div>
         </div>
